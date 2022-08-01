@@ -16,8 +16,27 @@ export class courseListComponent implements OnInit{
 
     constructor(private couseService: courseService){}
     ngOnInit(): void{
-        this._courses=this.couseService.retrieveAll();
-        this.filteredCourses= this._courses;
+        this.retieveAll();
+    }
+    retieveAll():void{
+        this.couseService.retrieveAll().subscribe({
+            next: courses =>{
+                this._courses=courses;
+                this.filteredCourses= this._courses;
+            },
+            error: err =>console.log(err)
+        })
+
+    }
+
+    deleteById(courseId:number):void{
+        this.couseService.deleteById(courseId).subscribe({
+            next:()=>{
+                console.log('Apagado com Sucesso');
+                this.retieveAll();
+            },
+            error: err=>console.log(err)
+        })
     }
 
     set filter(value:string){
