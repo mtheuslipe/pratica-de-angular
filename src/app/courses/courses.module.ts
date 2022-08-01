@@ -1,10 +1,10 @@
 import { CommonModule } from "@angular/common";
+import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
+
 import { pipeModule } from "../shared/pipe/pip.module";
-
-
 import { starModule } from "../shared/star/star.module";
 import { courseListComponent } from "./course-list.component";
 import { infoComponent } from "./info/info.component";
@@ -20,13 +20,14 @@ import { infoComponent } from "./info/info.component";
         FormsModule,
         starModule,
         pipeModule,
+        HttpClientModule,
         RouterModule.forChild([
             {
                 path: 'courses', component: courseListComponent
-              },
-              {
+            },
+            {
                 path: 'courses/info/:id', component:infoComponent
-              },
+            },
         ])
     ]
 })
